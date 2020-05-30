@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "moment": "^2.24.0"
+  },
+  "name": "mybot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "author": "@andriy",
+  "license": "MIT",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
