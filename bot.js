@@ -11,10 +11,7 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const bot_token = process.env.BOT_TOKEN;  /* my account */
     const src_name = process.env.SRC_NAME;
     const dst_name = process.env.DST_NAME;
-    const src_channel_names = process.env.CHANNEL_NAMES.split(';').map(e=>e.split(":")[0]);
-    const dest_channel_names = process.env.CHANNEL_NAMES.split(';').map(e=>e.split(":")[1]);
-    const src_channel_names_new_format_map = {}
-    process.env.CHANNEL_NAMES.split(';').map(e=>{src_channel_names_new_format_map[e.split(":")[0]]=e.split(":")[1]});
+    const src_channel_names = process.env.CHANNEL_NAMES.split(';');
     const me = new Client();
     const bot = new Client();
 
@@ -33,17 +30,16 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     me.guilds.filter(u => ([src_name, dst_name].includes(u.name))).map(u => {guild_names[u.name] = u.id;});
 
     const guild = await bot.guilds.get(guild_names[dst_name]);
-    guild.channels.filter(c => dest_channel_names.includes(c.name)).map(c => { dst_ids[c.name] = c.id });
+    guild.channels.filter(c => src_channel_names.includes(c.parent?c.parent.name  + "+" + c.name:c.name)).map(c => { dst_ids[c.parent?c.parent.name  + "+" + c.name:c.name] = c.id });
 
 
     me.on('message', async(msg) => {
         if (msg.author.id === itsme || (msg.guild && msg.guild.name !== src_name)) return;
+
         if (!src_channel_names.includes(msg.channel.parent.name + "+" + msg.channel.name)) return;
 
-
-
         if (src_channel_names.includes(msg.channel.parent.name + "+" + msg.channel.name)) {
-            const reply_channel = await guild.channels.get(dst_ids[src_channel_names_new_format_map[msg.channel.parent.name + "+" + msg.channel.name]]);
+            const reply_channel = await guild.channels.get(dst_ids[msg.channel.parent.name + "+" + msg.channel.name]);
 
             let content = msg.content;
             let options = {}
