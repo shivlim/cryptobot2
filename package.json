@@ -13,6 +13,7 @@
     "start": "node bot.js"
   },
   "engines": {
-    "node": ">=14.6.0"
+    "node": ">=14.6.0",
+    "npm": ">=7.0.0"
   }
 }
