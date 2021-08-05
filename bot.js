@@ -16,7 +16,7 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const bot = new Client();
     console.log('Line1latest' + token + ' >> ' + bot_token + ' >> ')
 
-    me.login('NzE2Mzg5MDg2NzU5MzU0NDQ4.XtLDVA.vrv0ndCK-1ZDd627wCb2Iyr_9Yg'); /* login */
+    me.login(token); /* login */
      console.log('Line11')
     await waitEvent(me, 'ready'); /* wait for login */
     console.log('Line112')
