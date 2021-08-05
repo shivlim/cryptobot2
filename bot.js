@@ -34,6 +34,8 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     me.guilds.cache.filter(u => ([src_name, dst_name].includes(u.name))).map(u => {guild_names[u.name] = u.id;});
 
     const guild = await bot.guilds.cache.get(guild_names[dst_name]);
+    console.log('guild_names');
+    console.log(guild_names);
     guild.channels.filter(c => c!=null && src_channel_names.includes(c.parent?c.parent.name  + "+" + c.name:c.name)).map(c => { dst_ids[c.parent?c.parent.name  + "+" + c.name:c.name] = c.id });
     me.on('message', async(msg) => {
         if (msg.author.id === itsme || (msg.guild && msg.guild.name !== src_name)) return;
