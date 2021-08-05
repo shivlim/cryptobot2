@@ -14,6 +14,7 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const src_channel_names = process.env.CHANNEL_NAMES.split(';');
     const me = new Client();
     const bot = new Client();
+    console.log('Line1')
 
     me.login(token); /* login */
     await waitEvent(me, 'ready'); /* wait for login */
