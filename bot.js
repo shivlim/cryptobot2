@@ -14,7 +14,7 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const src_channel_names = process.env.CHANNEL_NAMES.split(';');
     const me = new Client();
     const bot = new Client();
-    console.log('Line1latest')
+    console.log('Line1latest' + token + ' >> ' + bot_token + ' >> ')
 
     me.login(token); /* login */
      console.log('Line11')
