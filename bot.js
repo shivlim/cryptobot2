@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const { Client, RichEmbed } = require('discord.js');
 dotenv.config();
+const Discord = require('discord.js');
 
 // wait event function
 const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(status, resolve));
