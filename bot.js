@@ -14,23 +14,11 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const src_channel_names = process.env.CHANNEL_NAMES.split(';');
     const me = new Client();
     const bot = new Client();
-    console.log('Line1latest' + token + ' >> ' + bot_token + ' >> ')
-     me.on('ready', () =>{
-        console.log('FINALLYYYYYY me')
-          me.login(token); /* login */
-    })
 
-   
-     console.log('Line11')
+    me.login(token); /* login */
     await waitEvent(me, 'ready'); /* wait for login */
-    console.log('Line112')
     console.log('Logged as @me')
-    console.log('Line113')
-    bot.on('ready', () =>{
-        console.log('FINALLYYYYYY bot')
-         bot.login(bot_token); 
-    })
-   /* login */
+    bot.login(bot_token); /* login */
     await waitEvent(bot, 'ready'); /* wait for login */
     console.log('Logged as @bot')
 
@@ -39,11 +27,9 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const dst_ids = {};
 
     // get Guilds IDs & Channels IDs
-    me.guilds.cache.filter(u => ([src_name, dst_name].includes(u.name))).map(u => {guild_names[u.name] = u.id;});
+    me.guilds.filter(u => ([src_name, dst_name].includes(u.name))).map(u => {guild_names[u.name] = u.id;});
 
-    const guild = await bot.guilds.cache.get(guild_names[dst_name]);
-    console.log('guild_names');
-    console.log(guild_names);
+    const guild = await bot.guilds.get(guild_names[dst_name]);
     guild.channels.filter(c => c!=null && src_channel_names.includes(c.parent?c.parent.name  + "+" + c.name:c.name)).map(c => { dst_ids[c.parent?c.parent.name  + "+" + c.name:c.name] = c.id });
     me.on('message', async(msg) => {
         if (msg.author.id === itsme || (msg.guild && msg.guild.name !== src_name)) return;
