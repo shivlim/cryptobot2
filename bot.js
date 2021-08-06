@@ -16,18 +16,18 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const me = new Client();
     const bot = new Client();
     
-    const client = new Discord.Client();
+    //const client = new Discord.Client();
 
-    client.login(process.env.BOT_TOKEN);
+    //client.login(process.env.BOT_TOKEN);
 
-    client.on('ready', () => console.log('The Bot is ready!'));
+    //client.on('ready', () => console.log('The Bot is ready!'));
     
 
     //console.log('before me login')
-    //me.login(token); /* login */
+    me.login(token); /* login */
     //console.log('after me login')
-    //await waitEvent(me, 'ready'); /* wait for login */
-    //console.log('Logged as @me')
+    await waitEvent(me, 'ready'); /* wait for login */
+    console.log('Logged as @me')
     bot.login(bot_token); /* login */
     await waitEvent(bot, 'ready'); /* wait for login */
     console.log('Logged as @bot')
