@@ -23,11 +23,11 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     client.on('ready', () => console.log('The Bot is ready!'));
     
 
-    console.log('before me login')
-    me.login(token); /* login */
-    console.log('after me login')
-    await waitEvent(me, 'ready'); /* wait for login */
-    console.log('Logged as @me')
+    //console.log('before me login')
+    //me.login(token); /* login */
+    //console.log('after me login')
+    //await waitEvent(me, 'ready'); /* wait for login */
+    //console.log('Logged as @me')
     bot.login(bot_token); /* login */
     await waitEvent(bot, 'ready'); /* wait for login */
     console.log('Logged as @bot')
