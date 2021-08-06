@@ -15,7 +15,9 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const me = new Client();
     const bot = new Client();
 
+    console.log('before me login')
     me.login(token); /* login */
+    console.log('after me login')
     await waitEvent(me, 'ready'); /* wait for login */
     console.log('Logged as @me')
     bot.login(bot_token); /* login */
