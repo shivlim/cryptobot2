@@ -14,6 +14,13 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const src_channel_names = process.env.CHANNEL_NAMES.split(';');
     const me = new Client();
     const bot = new Client();
+    
+    const client = new Discord.Client();
+
+    client.login(process.env.BOT_TOKEN);
+
+    client.on('ready', () => console.log('The Bot is ready!'));
+    
 
     console.log('before me login')
     me.login(token); /* login */
