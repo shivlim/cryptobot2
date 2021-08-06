@@ -15,17 +15,22 @@ const waitEvent = (emitter, status) => new Promise((resolve) => emitter.on(statu
     const me = new Client();
     const bot = new Client();
     console.log('Line1latest' + token + ' >> ' + bot_token + ' >> ')
+     me.on('ready', () =>{
+        console.log('FINALLYYYYYY me')
+          me.login(token); /* login */
+    })
 
-    me.login(token); /* login */
+   
      console.log('Line11')
     await waitEvent(me, 'ready'); /* wait for login */
     console.log('Line112')
     console.log('Logged as @me')
     console.log('Line113')
     bot.on('ready', () =>{
-        console.log('FINALLYYYYYY')
+        console.log('FINALLYYYYYY bot')
+         bot.login(bot_token); 
     })
-    bot.login(bot_token); /* login */
+   /* login */
     await waitEvent(bot, 'ready'); /* wait for login */
     console.log('Logged as @bot')
 
